@@ -1,0 +1,65 @@
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+   "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true"></constant>
+
+	<!-- Admin -->
+	<package name="adminPkg" extends="struts-default">
+		<action name="adminLoginprocess"
+			class="org.struts2Application.model.AdminLogin">
+			<result name="success">adminSuccess.jsp</result>
+			<result name="error">adminloginError.jsp</result>
+		</action>
+
+		<action name="adminProfile"
+			class="org.struts2Application.model.AdminProfile">
+			<result name="success">adminprofileSuccess.jsp</result>
+			<result name="error">adminprofileError.jsp</result>
+		</action>
+
+		<action name="adminLogout"
+			class="org.struts2Application.model.AdminLogin" method="adminLogOut">
+			<result name="success">adminLogin.jsp</result>
+		</action>
+
+		<action name="adminHome"
+			class="org.struts2Application.model.AdminLogin" method="adminHome">
+			<result name="success">adminSuccess.jsp</result>
+		</action>
+
+		<action name="teacherRegistration"
+			class="org.struts2Application.model.TeacherRegistration">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">3145728</param>
+				<param name="allowedTypes">image/png,image/gif,image/jpeg,image/pjpeg,
+					image/jpg</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="input">adminSuccess.jsp</result>
+			<result name="REGISTER">teacher_reg_success.jsp</result>
+		</action>
+		
+			<action name="showTeacherRecord" class="org.struts2Application.model.TeacherRecords">	
+			<result name="RECORD">teacherRecords.jsp</result>
+			<!-- <result name="success">teacherRecords.jsp</result> -->
+		</action>
+		
+		
+		<action name="updateTeacherRecord" class="org.struts2Application.model.UpdateTeacherRecord">	
+			<result name="UPDATE">updateTeacher.jsp</result>
+		</action>
+		
+		<action name="deleteTeacherRecord" class="org.struts2Application.model.DeleteTeacherRecord">	
+			<result name="DELETE">deleteTeacher.jsp</result>
+		</action>
+		
+
+
+	</package>
+	<!-- admin End -->
+
+
+
+</struts>      
